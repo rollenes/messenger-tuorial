@@ -64,10 +64,21 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then I should see :arg1
+     * @Then I should see confirmation :confirmationMessage
      */
-    public function iShouldSee($arg1)
+    public function iShouldSeeConfirmation($confirmationMessage)
     {
         throw new PendingException();
     }
+
+    /**
+     * @Then recipient :recipientEmail should get message
+     */
+    public function recipientShouldGetMessage($arg1)
+    {
+        throw new PendingException();
+    }
+
+
+
 }
