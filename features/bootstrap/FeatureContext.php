@@ -41,11 +41,12 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I provide recipient :arg1 and message :arg2
+     * @When I provide recipient :recipient and message :message
      */
     public function iProvideRecipientAndMessage($arg1, $arg2)
     {
-        throw new PendingException();
+        $this->sendEmailPage->fillField('recipient', $arg1);
+        $this->sendEmailPage->fillField('message', $arg2);
     }
 
     /**
