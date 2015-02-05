@@ -1,3 +1,9 @@
+<?php
+if (@$_POST['recipient'] && @$_POST['message']) {
+    echo '<span id="confirmation">Your message has been sent</span>';
+}
+?>
+
 <form action="" method="post">
     <input name="recipient" type="email">
     <textarea name="message"></textarea>
