@@ -20,4 +20,36 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function __construct()
     {
     }
+
+    /**
+     * @Given I am on send email page
+     */
+    public function iAmOnSendEmailPage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I provide recipient :arg1 and message :arg2
+     */
+    public function iProvideRecipientAndMessage($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When I send message
+     */
+    public function iSendMessage()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then I should see :arg1
+     */
+    public function iShouldSee($arg1)
+    {
+        throw new PendingException();
+    }
 }
