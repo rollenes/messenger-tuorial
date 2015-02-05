@@ -5,6 +5,6 @@ Feature:
 
   Scenario: Sending email message
     Given I am on send email page
-    When I provide recipient "rafal.wartalski@gmail.com" and message "Hi Rafał"
+    When I provide recipient "rafal.wartalski@gmail.com" and message text "Hi Rafał"
     And I send message
     Then I should see "Your message has been sent"

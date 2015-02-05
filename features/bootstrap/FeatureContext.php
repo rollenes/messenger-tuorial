@@ -41,12 +41,12 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I provide recipient :recipient and message :message
+     * @When I provide recipient :recipient and message text :message
      */
-    public function iProvideRecipientAndMessage($arg1, $arg2)
+    public function iProvideRecipientAndMessageText($recipient, $message)
     {
-        $this->sendEmailPage->fillField('recipient', $arg1);
-        $this->sendEmailPage->fillField('message', $arg2);
+        $this->sendEmailPage->fillField('recipient', $recipient);
+        $this->sendEmailPage->fillField('message', $message);
     }
 
     /**
@@ -54,7 +54,13 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iSendMessage()
     {
-        throw new PendingException();
+        $button = $this->sendEmailPage->findButton('send');
+
+        if (!$button) {
+            throw new \LogicException('There is no send button!');
+        }
+
+        $button->submit();
     }
 
     /**
