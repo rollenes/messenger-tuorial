@@ -1,6 +1,6 @@
 <?php
 if (@$_POST['recipient'] && @$_POST['message']) {
-    echo '<span id="confirmation">Your message has been sent</span>';
+    echo '<span id="confirmation">Your message has been sent to: ' . $_POST['recipient'] . '</span>';
 }
 ?>
 

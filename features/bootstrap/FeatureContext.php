@@ -64,25 +64,14 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then I should see confirmation :confirmationMessage
-     */
-    public function iShouldSeeConfirmation($confirmationMessage)
-    {
-
-
-        if ($this->sendEmailPage->find('css', '#confirmation')->getText() != $confirmationMessage) {
-            throw new \LogicException('There is no send confirmation!');
-        }
-    }
-
-    /**
      * @Then recipient :recipientEmail should get message
      */
-    public function recipientShouldGetMessage($arg1)
+    public function recipientShouldGetMessage($recipientEmail)
     {
-        throw new PendingException();
+        $confirmationText = $this->sendEmailPage->find('css', '#confirmation')->getText();
+
+        if (strpos($confirmationText, $recipientEmail) === false) {
+            throw new \LogicException('Message did not get to recipient');
+        }
     }
-
-
-
 }
