@@ -11,14 +11,20 @@ use Behat\Gherkin\Node\TableNode;
 class FeatureContext implements Context, SnippetAcceptingContext
 {
     /**
+     * @var \Page\SendEmail
+     */
+    private $sendEmailPage;
+
+    /**
      * Initializes context.
      *
      * Every scenario gets its own context instance.
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
+    public function __construct(\Page\SendEmail $sendEmailPage)
     {
+        $this->sendEmailPage = $sendEmailPage;
     }
 
     /**
@@ -26,7 +32,12 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iAmOnSendEmailPage()
     {
-        throw new PendingException();
+        $this->sendEmailPage->open();
+
+        if (!$this->sendEmailPage->isOpen()) {
+            throw new \LogicException('Cannot open send email page');
+        }
+
     }
 
     /**
