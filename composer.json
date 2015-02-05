@@ -1,0 +1,16 @@
+{
+    "name": "rollenes/behat-test",
+    "require-dev": {
+        "behat/behat": "~3.0",
+        "sensiolabs/behat-page-object-extension": "2.0.*@dev",
+        "ocramius/proxy-manager": "~1.0",
+        "behat/mink-goutte-driver": "~1.1"
+    },
+    "authors": [
+        {
+            "name": "Rafał Wartalski",
+            "email": "rafal.wartalski@gmail.com"
+        }
+    ],
+    "require": {}
+}
