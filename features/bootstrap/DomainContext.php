@@ -29,7 +29,7 @@ class DomainContext implements Context, SnippetAcceptingContext
      */
     public function iAmOnSendEmailPage()
     {
-        $this->sender = new Domain\EmailSender();
+        $this->sender = new \Fake\Sender();
     }
 
     /**
@@ -49,11 +49,19 @@ class DomainContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then recipient :arg1 should get message
+     * @Then recipient :recipient should get message
      */
-    public function recipientShouldGetMessage($arg1)
+    public function recipientShouldGetMessage($recipient)
     {
-        throw new PendingException();
+        if ($recipient !== (string)$this->message->getRecipient()) {
+            throw new \LogicException(
+                sprintf('Message was sent to: %s. Expected: %s', $this->message->getRecipient(), $recipient)
+            );
+        }
+
+        if (!$this->sender->findSentMessage($this->message)) {
+            throw new \LogicException('Message didn`t get to recipient');
+        }
     }
 
 }

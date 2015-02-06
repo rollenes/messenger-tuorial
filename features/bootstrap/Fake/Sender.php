@@ -16,4 +16,13 @@ class Sender implements \Domain\Sender
     {
         array_push($this->sentMessages, $message);
     }
+
+    public function findSentMessage(Message $message)
+    {
+        foreach ($this->sentMessages as $sentMessage) {
+            if ($message == $sentMessage) {
+                return $sentMessage;
+            }
+        }
+    }
 }
