@@ -12,9 +12,15 @@ $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__ . '/cache/twig',
 ));
 
+$transport = new Swift_MailTransport();
+
+$swiftMailer = \Swift_Mailer::newInstance($transport);
+
+$sender = new App\Sender\Email($swiftMailer);
+
 $request = Request::createFromGlobals();
 
-$request->attributes->set('_controller', new \App\SendEmail($twig));
+$request->attributes->set('_controller', new \App\SendEmail($twig, $sender));
 
 $kernel = new HttpKernel(new EventDispatcher(), new ControllerResolver());
 
