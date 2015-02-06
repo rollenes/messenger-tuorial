@@ -5,6 +5,9 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Domain\Message;
+use Domain\Message\Recipient;
+use Domain\Message\Text;
 
 /**
  * Defines application features from the specific context.
@@ -17,6 +20,11 @@ class DomainContext implements Context, SnippetAcceptingContext
     private $sender;
 
     /**
+     * @var Message
+     */
+    private $message;
+
+    /**
      * @Given I am on send email page
      */
     public function iAmOnSendEmailPage()
@@ -25,11 +33,11 @@ class DomainContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I provide recipient :arg1 and message text :arg2
+     * @When I provide recipient :recipient and message text :messageText
      */
-    public function iProvideRecipientAndMessageText($arg1, $arg2)
+    public function iProvideRecipientAndMessageText($recipient, $messageText)
     {
-        throw new PendingException();
+        $this->message = new Message(new Recipient($recipient), new Text($messageText));
     }
 
     /**
