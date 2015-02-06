@@ -4,6 +4,7 @@ namespace spec\Domain;
 
 use Domain\Message;
 use Domain\Message\Recipient;
+use Domain\Sender;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -31,5 +32,12 @@ class MessageSpec extends ObjectBehavior
     function it_has_text()
     {
         $this->getText()->shouldBe($this->text);
+    }
+
+    function it_can_be_send(Sender $sender)
+    {
+        $sender->send($this)->shouldBeCalled();
+
+        $this->send($sender);
     }
 }

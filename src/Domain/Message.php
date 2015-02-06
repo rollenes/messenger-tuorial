@@ -32,4 +32,9 @@ class Message
     {
         return $this->text;
     }
+
+    public function send(Sender $sender)
+    {
+        $sender->send($this);
+    }
 }
