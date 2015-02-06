@@ -16,7 +16,7 @@ $transport = new Swift_MailTransport();
 
 $swiftMailer = \Swift_Mailer::newInstance($transport);
 
-$sender = new App\Sender\Email($swiftMailer);
+$sender = new App\Sender\Email($swiftMailer, 'dark@side.pl');
 
 $request = Request::createFromGlobals();
 

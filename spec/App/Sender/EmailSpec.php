@@ -12,9 +12,13 @@ use Prophecy\Argument;
  */
 class EmailSpec extends ObjectBehavior
 {
+    private $emailFrom;
+
     function let(\Swift_Mailer $mailer)
     {
-        $this->beConstructedWith($mailer);
+        $this->emailFrom = 'test@from.pl';
+
+        $this->beConstructedWith($mailer, $this->emailFrom);
     }
 
     function it_is_sender()
@@ -33,6 +37,10 @@ class EmailSpec extends ObjectBehavior
             }
 
             if ($swiftMessage->getTo() != ['test@test.pl' => null]) {
+                return false;
+            }
+
+            if ($swiftMessage->getFrom() != [$this->emailFrom => null]) {
                 return false;
             }
 

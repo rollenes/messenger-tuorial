@@ -12,9 +12,15 @@ class Email implements Sender
      */
     private $mailer;
 
-    public function __construct(\Swift_Mailer $mailer)
+    /**
+     * @var string
+     */
+    private $emailFrom;
+
+    public function __construct(\Swift_Mailer $mailer, $emailFrom)
     {
         $this->mailer = $mailer;
+        $this->emailFrom = $emailFrom;
     }
 
     /**
@@ -24,7 +30,7 @@ class Email implements Sender
     public function send(Message $message)
     {
         $swiftMessage = new \Swift_Message('message from the dark side');
-        $swiftMessage->setFrom('dark@side.pl');
+        $swiftMessage->setFrom($this->emailFrom);
         $swiftMessage->setTo((string)$message->getRecipient());
         $swiftMessage->setBody((string)$message->getText());
 
