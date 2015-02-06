@@ -12,11 +12,16 @@ use Behat\Gherkin\Node\TableNode;
 class DomainContext implements Context, SnippetAcceptingContext
 {
     /**
+     * @var Domain\EmailSender
+     */
+    private $sender;
+
+    /**
      * @Given I am on send email page
      */
     public function iAmOnSendEmailPage()
     {
-        throw new PendingException();
+        $this->sender = new Domain\EmailSender();
     }
 
     /**
