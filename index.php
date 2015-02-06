@@ -2,20 +2,16 @@
 
 require_once 'vendor/autoload.php';
 
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\HttpKernel;
 
 $request = Request::createFromGlobals();
+$request->attributes->set('_controller', \App\SendEmail::class);
 
-$recipient = $request->request->get('recipient');
-$message = $request->request->get('message');
+$kernel = new HttpKernel(new EventDispatcher(), new ControllerResolver());
 
-if ($recipient && $message) {
-    echo '<span id="confirmation">Your message has been sent to: ' . $recipient . '</span>';
-}
-?>
+$response = $kernel->handle($request);
+$response->send();
 
-<form action="" method="post">
-    <input name="recipient" type="email">
-    <textarea name="message"></textarea>
-    <input name="send" type="submit">
-</form>
