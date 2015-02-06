@@ -15,7 +15,7 @@ use Domain\Message\Text;
 class DomainContext implements Context, SnippetAcceptingContext
 {
     /**
-     * @var Domain\EmailSender
+     * @var \Fake\Sender
      */
     private $sender;
 
@@ -45,7 +45,7 @@ class DomainContext implements Context, SnippetAcceptingContext
      */
     public function iSendMessage()
     {
-        throw new PendingException();
+        $this->message->send($this->sender);
     }
 
     /**
