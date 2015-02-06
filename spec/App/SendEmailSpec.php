@@ -9,6 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SendEmailSpec extends ObjectBehavior
 {
+    function let(\Twig_Environment $twig)
+    {
+        $this->beConstructedWith($twig);
+    }
+
     function it_returns_response()
     {
         $request = $this->createRequest();

@@ -15,7 +15,8 @@
     ],
     "require": {
         "symfony/http-foundation": "~2.6",
-        "symfony/http-kernel": "~2.6"
+        "symfony/http-kernel": "~2.6",
+        "twig/twig": "~1.18"
     },
     "autoload": {"psr-0": {"": "src"}}
 }
