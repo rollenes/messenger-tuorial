@@ -63,5 +63,4 @@ class DomainContext implements Context, SnippetAcceptingContext
             throw new \LogicException('Message didn`t get to recipient');
         }
     }
-
 }
