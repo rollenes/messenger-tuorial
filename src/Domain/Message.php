@@ -2,6 +2,7 @@
 
 namespace Domain;
 
+use Domain\Exception\MessageException;
 use Domain\Message\Recipient;
 use Domain\Message\Text;
 
@@ -16,6 +17,11 @@ class Message
      * @var Text
      */
     private $text;
+
+    /**
+     * @var bool
+     */
+    private $sent = false;
 
     public function __construct(Recipient $recipient, Text $text)
     {
@@ -35,8 +41,17 @@ class Message
 
     public function send(Sender $sender)
     {
+        if ($this->isSent()) {
+            throw new MessageException('Message cannot be sent twice');
+        }
+
         $sender->send($this);
 
-        return true;
+        $this->sent = true;
+    }
+
+    public function isSent()
+    {
+        return $this->sent;
     }
 }

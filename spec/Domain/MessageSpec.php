@@ -2,6 +2,7 @@
 
 namespace spec\Domain;
 
+use Domain\Exception\MessageException;
 use Domain\Message;
 use Domain\Message\Recipient;
 use Domain\Sender;
@@ -38,6 +39,17 @@ class MessageSpec extends ObjectBehavior
     {
         $sender->send($this)->shouldBeCalled();
 
-        $this->send($sender)->shouldReturn(true);
+        $this->send($sender);
+
+        $this->isSent()->shouldReturn(true);
+    }
+
+    function it_cannot_be_send_twice(Sender $sender)
+    {
+        $sender->send($this)->shouldBeCalled();
+
+        $this->send($sender);
+
+        $this->shouldThrow(new MessageException('Message cannot be sent twice'))->during('send', [$sender]);
     }
 }
