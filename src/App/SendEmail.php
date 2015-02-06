@@ -26,6 +26,4 @@ class SendEmail
 
         return new Response($content);
     }
-
-
 }

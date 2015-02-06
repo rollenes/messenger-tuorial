@@ -7,3 +7,10 @@ default:
           goutte: ~
 
     SensioLabs\Behat\PageObjectExtension: ~
+  suites:
+    web_features:
+      paths:    [ %paths.base%/features ]
+      contexts: [ WebContext ]
+    domain_features:
+      paths:    [ %paths.base%/features ]
+      contexts: [ DomainContext ]
