@@ -36,5 +36,7 @@ class Message
     public function send(Sender $sender)
     {
         $sender->send($this);
+
+        return true;
     }
 }

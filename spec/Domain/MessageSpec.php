@@ -38,6 +38,6 @@ class MessageSpec extends ObjectBehavior
     {
         $sender->send($this)->shouldBeCalled();
 
-        $this->send($sender);
+        $this->send($sender)->shouldReturn(true);
     }
 }
